@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   before_validation :generate_api_key, on: :create
 
-  validates :name, presence: true, format: { without: /{{.*?}}/, message: I18n.t('xss_not_allowed') }
+  validates :name, presence: true, format: { with: /\A([-a-zA-Z\d._ ]*)$\z/i, message: 'Format not Supported' }
   validates :api_key, presence: true, uniqueness: true
 
   private
