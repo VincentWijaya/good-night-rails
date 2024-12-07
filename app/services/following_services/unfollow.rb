@@ -10,7 +10,7 @@ module FollowingServices
 
     def call
       return Error.new("You can't unfollow your self") if @current_user.id == @params[:following_user_id].to_i
-      return Error.new('Following user not found') if following_user.blank?
+      return Error.new('User not found') if following_user.blank?
 
       following = @current_user.follower.find_by(following_user_id: following_user.id)
       return Error.new("You are not following #{following_user.name}") if following.blank?
