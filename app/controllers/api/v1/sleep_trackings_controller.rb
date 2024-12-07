@@ -5,7 +5,10 @@ module Api::V1
       paginated_sleep_trackings = sleep_trackings.page(params[:page]).per(params[:per_page] || 10).without_count
       sorted_sleep_trackings = paginated_sleep_trackings.sort_by { |record| -record.sleep_duration.to_i }
 
-      render json: SleepTrackingSerializer.new(sorted_sleep_trackings).serializable_hash, status: :ok
+      render json: SleepTrackingSerializer.new(
+        sorted_sleep_trackings,
+        pagination_options(paginated_sleep_trackings)
+      ).serializable_hash, status: :ok
     end
 
     def clock_in
