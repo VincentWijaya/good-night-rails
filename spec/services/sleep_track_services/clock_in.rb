@@ -12,7 +12,7 @@ RSpec.describe SleepTrackServices::ClockIn do
       result = described_class.call(current_user: User.first)
 
       expect(result).to be_a(SleepTrackServices::ClockIn::Error)
-      expect(result.message).to eq('You are already clocked in')
+      expect(result.message).to eq('You are already clocked in today!')
     end
   end
 

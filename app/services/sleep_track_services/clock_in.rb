@@ -8,7 +8,7 @@ module SleepTrackServices
     end
 
     def call
-      return Error.new('You are already clocked in') if recent_clocked_in.present?
+      return Error.new('You are already clocked in today!') if recent_clocked_in.present?
 
       @current_user.sleep_trackings.create(clock_in: Time.zone.now)
       @current_user.sleep_trackings.sort_by { |record| -record.created_at.to_i }
