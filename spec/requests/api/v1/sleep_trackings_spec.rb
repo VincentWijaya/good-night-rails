@@ -22,3 +22,23 @@ RSpec.describe 'GET /api/v1/sleep_trackings' do
     end
   end
 end
+
+RSpec.describe 'POST /api/v1/sleep_trackings/clock_in' do
+  before do
+    create(:user, id: 1, name: 'User 1')
+  end
+
+  context 'with invalid authentication' do
+    it 'returns unauthorized status' do
+      post '/api/v1/sleep_trackings/clock_in'
+      expect(response).to have_http_status :unauthorized
+    end
+  end
+
+  context 'with valid authentication' do
+    it 'returns ok status' do
+      post '/api/v1/sleep_trackings/clock_in', headers: { 'Authorization' => User.first.api_key }
+      expect(response).to have_http_status :ok
+    end
+  end
+end
