@@ -11,6 +11,9 @@ Rails.application.routes.draw do
       resources :users, only: [:create] do
       end
 
+      resources :sleep_trackings, only: [:index] do
+      end
+
       post 'follow/:following_user_id', to: 'followings#follow', as: 'follow'
       post 'unfollow/:following_user_id', to: 'followings#unfollow', as: 'unfollow'
     end
