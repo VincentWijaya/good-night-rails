@@ -5,15 +5,15 @@
 #
 # Examples:
 #
-#   config.middleware.use Middlewares::UserAuthenticationMiddleware
+#   config.middleware.use Middleware::UserAuthentication
 #
 # Provided data:
 #
 #   request.env[:current_user]
 #   #> "#<User:0x00007fc2e4beda08>"
 #
-module Middlewares
-  class UserAuthenticationMiddleware
+module Middleware
+  class UserAuthentication
     PREFIX_API_V1_PATH = '/api/v1'.freeze
     EXCLUDED_PATHS = %w[/api/v1/users].freeze
 
