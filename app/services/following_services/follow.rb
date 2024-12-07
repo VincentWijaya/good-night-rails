@@ -9,7 +9,7 @@ module FollowingServices
     end
 
     def call
-      return Error.new("You can't follow your self") if @current_user.id == @params[:following_user_id]
+      return Error.new("You can't follow your self") if @current_user.id == @params[:following_user_id].to_i
       return Error.new('Following user not found') if following_user.blank?
       
       following = @current_user.follower.find_by(following_user_id: following_user.id)

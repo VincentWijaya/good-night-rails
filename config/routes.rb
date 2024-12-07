@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:create] do
       end
+
+      post 'follow/:following_user_id', to: 'followings#follow', as: 'follow'
+      post 'unfollow/:following_user_id', to: 'followings#unfollow', as: 'unfollow'
     end
   end
 end

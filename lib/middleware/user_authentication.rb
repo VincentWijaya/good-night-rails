@@ -54,7 +54,7 @@ module Middleware
         user = User.find_by!(api_key: api_key)
 
         # Validate api_key to be case sensitive
-        return nil if api_key != user&.key
+        return nil if api_key != user&.api_key
 
         Rails.cache.write("user_api_key:#{api_key}", user, expires_in: ENV.fetch('API_KEY_EXPIRE_CACHE_IN_DAYS', 7).to_i.days)
         user
