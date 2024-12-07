@@ -42,8 +42,9 @@ This application requires Ruby version `3.2.2` or later.
    ```
 3. Set up environment variables: Create a `.env` file in the root directory and add the necessary environment variables:
   ```yaml
-  DATABASE_USERNAME=your_database_username
-  DATABASE_PASSWORD=your_database_password
+DB_USER = postgres
+DB_PASSWORD = postgres
+DB_HOST = localhost
   ```
 
 ## Database Creation
