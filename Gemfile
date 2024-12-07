@@ -44,6 +44,7 @@ gem "bootsnap", require: false
 
 gem 'dotenv-rails'
 gem 'jsonapi-serializer', '~> 2.2'
+gem 'kaminari'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
