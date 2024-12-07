@@ -16,4 +16,14 @@ RSpec.describe 'POST /api/v1/users' do
       expect(response.body).to include('Format not Supported')
     end
   end
+
+  context 'with valid request' do
+    it 'returns created status when request is valid' do
+      params = { name: 'John Doe' }
+      post '/api/v1/users', params: params
+      expect(response).to have_http_status :created
+      expect(response.body).to include('John Doe')
+      expect(response.body).to include('api_key')
+    end
+  end
 end
