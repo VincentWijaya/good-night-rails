@@ -8,7 +8,7 @@ module Api::V1
     def create
       user = User.new(user_params)
       user.save!
-      render json: UserSerializer.new(user).serializable_hash, status: :created
+      render json: UserSerializer.new(user).serializable_hash, status: :ok
     end
   
     private

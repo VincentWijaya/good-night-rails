@@ -18,10 +18,10 @@ RSpec.describe 'POST /api/v1/users' do
   end
 
   context 'with valid request' do
-    it 'returns created status when request is valid' do
+    it 'returns ok status when request is valid' do
       params = { name: 'John Doe' }
       post '/api/v1/users', params: params
-      expect(response).to have_http_status :created
+      expect(response).to have_http_status :ok
       expect(response.body).to include('John Doe')
       expect(response.body).to include('api_key')
     end
