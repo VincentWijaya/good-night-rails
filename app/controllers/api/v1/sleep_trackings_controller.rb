@@ -5,5 +5,15 @@ module Api::V1
 
       render json: SleepTrackingSerializer.new(result).serializable_hash, status: :ok
     end
+
+    def clock_in
+      result = SleepTrackServices::ClockIn.call(current_user: current_user)
+
+      if result.is_a?(SleepTrackServices::ClockIn::Error)
+        render json: { error: result.message }, status: :bad_request
+      else
+        render json: SleepTrackingSerializer.new(result).serializable_hash
+      end
+    end
   end
 end

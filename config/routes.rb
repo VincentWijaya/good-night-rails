@@ -8,10 +8,12 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :users, only: [:create] do
-      end
+      resources :users, only: [:create] do end
 
       resources :sleep_trackings, only: [:index] do
+        collection do
+          post 'clock_in', to: 'sleep_trackings#clock_in'
+        end
       end
 
       post 'follow/:following_user_id', to: 'followings#follow', as: 'follow'
