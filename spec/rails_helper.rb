@@ -58,6 +58,27 @@ RSpec.configure do |config|
   end
 end
 
+if ENV['NO_COVERAGE'].blank?
+  # begin simple cov coverage
+  SimpleCov.start do
+    add_filter '/spec/'
+    add_filter '/engines/'
+    add_filter '/app/controllers/'
+    add_filter '/app/policies/'
+    add_filter '/app/decorators/'
+    enable_coverage :branch
+  end
+
+  if ENV['SIMPLECOV_JSON']
+    require 'simplecov_json_formatter'
+    SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter
+  end
+
+  SimpleCov.minimum_coverage 96
+  # refuse drop for line and branch
+  SimpleCov.refuse_coverage_drop :line, :branch
+end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
